@@ -40,20 +40,52 @@ def create_sample_data():
         # Add sample products
         products = [
             Product(
-                name="Delus Trucker Hat",
+                name="Ritual Trucker - Black XL",
                 description="Essential Delus trucker",
-                price=49.99,
+                price=60.00,
                 image_url="images/collection/item1.jpg",
                 category="Clothing",
-                stock=25
+                stock=20
             ),
             Product(
-                name="Delus Trucker II",
+                name="Ritual Trucker - Grey XL",
                 description="Second Edition Delus trucker",
-                price=49.99,
+                price=60.00,
                 image_url="images/collection/item2.jpg",
                 category="Clothing",
-                stock=25
+                stock=20
+            ),
+            Product(
+                name="Ritual Trucker - Maroon",
+                description="Maroon Edition Delus trucker",
+                price=60.00,
+                image_url="images/collection/item3.jpg",
+                category="Clothing",
+                stock=20
+            ),
+            Product(
+                name="Certified Trucker - Rose",
+                description="Rose Edition Delus trucker",
+                price=60.00,
+                image_url="images/collection/item4.jpg",
+                category="Clothing",
+                stock=20
+            ),
+            Product(
+                name="Certified Trucker - White",
+                description="White Edition Delus trucker",
+                price=60.00,
+                image_url="images/collection/item5.jpg",
+                category="Clothing",
+                stock=20
+            ),
+            Product(
+                name="Certified Trucker - Black",
+                description="Black Edition Delus trucker",
+                price=60.00,
+                image_url="images/collection/item6.jpg",
+                category="Clothing",
+                stock=20
             )
         ]
         for product in products:
@@ -192,14 +224,30 @@ def add_to_cart(product_id):
     product = Product.query.get_or_404(product_id)
     quantity = int(request.form.get('quantity', 1))
     
+    # Check stock availability
+    if product.stock < quantity:
+        return jsonify({
+            'error': 'Not enough stock available',
+            'available_stock': product.stock
+        }), 400
+    
     if 'cart' not in session:
         session['cart'] = []
     
     # Check if product already in cart
     cart = session['cart']
     item_found = False
+    current_cart_quantity = 0
+    
     for item in cart:
         if item['id'] == product_id:
+            current_cart_quantity = item['quantity']
+            # Check if adding more would exceed stock
+            if current_cart_quantity + quantity > product.stock:
+                return jsonify({
+                    'error': f'Only {product.stock - current_cart_quantity} more items available',
+                    'available_stock': product.stock - current_cart_quantity
+                }), 400
             item['quantity'] += quantity
             item_found = True
             break
@@ -326,10 +374,29 @@ def stripe_webhook():
     if event['type'] == 'checkout.session.completed':
         checkout_session = event['data']['object']
         
-        # Here you would fulfill the order
-        # Save order in your database
-        # Send confirmation email, etc.
-        print(f"Order completed for session: {checkout_session.id}")
+        # Process the order and reduce inventory
+        try:
+            # Get line items from the checkout session
+            line_items = stripe.checkout.Session.list_line_items(checkout_session.id)
+            
+            for item in line_items['data']:
+                # You'll need to match Stripe line items to your products
+                # This is a simplified version - you might want to store product IDs in metadata
+                product_name = item['description']
+                quantity_purchased = item['quantity']
+                
+                # Find product by name (you might want to use a better matching method)
+                product = Product.query.filter_by(name=product_name).first()
+                if product:
+                    # Reduce stock
+                    product.stock = max(0, product.stock - quantity_purchased)
+                    db.session.commit()
+                    print(f"Reduced stock for {product.name}: {quantity_purchased} items. New stock: {product.stock}")
+            
+            print(f"Order completed for session: {checkout_session.id}")
+            
+        except Exception as e:
+            print(f"Error processing inventory: {str(e)}")
     
     return jsonify({'status': 'success'})
 

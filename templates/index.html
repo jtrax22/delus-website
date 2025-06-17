@@ -84,9 +84,15 @@
                     </div>
                     <h3>Ritual Trucker - Black XL</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="1">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 0 and products[0].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="1">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
                 
                 <!-- Second Product -->
@@ -124,9 +130,15 @@
                     </div>
                     <h3>Ritual Trucker - Grey XL</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="2">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 1 and products[1].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="2">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
             </div>
             
@@ -167,9 +179,15 @@
                     </div>
                     <h3>Ritual Trucker - Maroon</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="3">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 2 and products[2].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="3">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
                 
                 <!-- Fourth Product (placeholder) -->
@@ -207,9 +225,15 @@
                     </div>
                     <h3>Certified Trucker - Rose</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="4">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 3 and products[3].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="4">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
             </div>
             
@@ -250,9 +274,15 @@
                     </div>
                     <h3>Certified Trucker - White</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="5">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 4 and products[4].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="5">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
                 
                 <!-- Sixth Product (placeholder) -->
@@ -290,9 +320,15 @@
                     </div>
                     <h3>Certified Trucker - Black</h3>
                     <p class="price">$60</p>
-                    <button class="add-to-cart" data-product-id="6">
-                        Add to Cart
-                    </button>
+                    {% if products and products|length > 5 and products[5].stock > 0 %}
+                        <button class="add-to-cart" data-product-id="6">
+                            Add to Cart
+                        </button>
+                    {% else %}
+                        <button class="add-to-cart sold-out" disabled>
+                            Sold Out
+                        </button>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -1094,4 +1094,29 @@ footer {
     background-color: rgba(60, 20, 100, 0.3);
     border-color: rgba(140, 60, 220, 0.5);
     box-shadow: 0 0 15px rgba(100, 30, 180, 0.4);
+}
+
+/* Sold Out Button Styling */
+.product-card button.add-to-cart.sold-out {
+    background-color: #666 !important;
+    color: #ccc !important;
+    border: 1px solid #666 !important;
+    cursor: not-allowed !important;
+    opacity: 0.6 !important;
+    transition: none !important;
+}
+
+.product-card button.add-to-cart.sold-out:hover {
+    background-color: #666 !important;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.product-card button.add-to-cart.sold-out:hover::before,
+.product-card button.add-to-cart.sold-out:hover::after {
+    display: none !important;
+}
+
+.product-card button.add-to-cart.sold-out .sparkle {
+    display: none !important;
 } 
