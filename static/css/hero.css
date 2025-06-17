@@ -3,7 +3,7 @@
     position: relative;
     height: 100vh;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
     display: flex;
     align-items: center;
@@ -15,7 +15,9 @@
 
 /* Main hero with background image - more minimal approach */
 .main-hero {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/Delus Mirage Logo.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/cover-delussss.jpg');
+    background-size: cover;
+    background-position: center center;
 }
 
 /* Remove the purple vignette overlay */
@@ -106,6 +108,11 @@
 
 /* Mobile Styles */
 @media (max-width: 1200px) {
+    .main-hero {
+        background-size: cover;
+        background-position: center center;
+    }
+    
     .hero .hero-content {
         max-width: 80%;
     }
@@ -116,6 +123,11 @@
 }
 
 @media (max-width: 992px) {
+    .main-hero {
+        background-size: cover;
+        background-position: center center;
+    }
+    
     .hero .hero-content {
         max-width: 85%;
     }
@@ -126,15 +138,19 @@
 }
 
 @media (max-width: 768px) {
+    .main-hero {
+        background-size: cover;
+        background-position: center center;
+    }
+    
     .hero {
-        background-size: contain;
-        background-position: center top;
-        background-color: #1a1a1a; /* Fallback color */
+        height: 100vh;
+        min-height: 100vh;
     }
     
     .hero .hero-content {
         max-width: 90%;
-        padding: 0 20px;
+        padding: 1rem 20px;
     }
     
     .hero .hero-content .hero-logo {
@@ -147,21 +163,27 @@
     }
     
     .hero .cta-button {
-        padding: 1rem 2rem;
-        font-size: 1rem;
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
     }
 }
 
 @media (max-width: 480px) {
-    .hero {
-        background-size: contain;
+    .main-hero {
+        background-size: cover;
         background-position: center center;
+    }
+    
+    .hero {
         min-height: 100vh;
+        height: 100vh;
     }
     
     .hero .hero-content {
         max-width: 95%;
         padding: 1rem 15px;
+        justify-content: center;
     }
     
     .hero .hero-content .hero-logo {
@@ -174,16 +196,27 @@
     }
     
     .hero .cta-button {
-        padding: 0.8rem 1.5rem;
-        font-size: 0.9rem;
-        margin-top: 1.5rem;
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+        letter-spacing: 0.5px;
     }
 }
 
 /* Extra small mobile devices */
 @media (max-width: 375px) {
-    .hero {
+    .main-hero {
         background-size: cover;
         background-position: center center;
+    }
+    
+    .hero .hero-content {
+        padding: 0.5rem 10px;
+    }
+    
+    .hero .cta-button {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        margin-top: 0.8rem;
     }
 } 
