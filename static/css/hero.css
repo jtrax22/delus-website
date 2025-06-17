@@ -4,6 +4,7 @@
     height: 100vh;
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -125,6 +126,12 @@
 }
 
 @media (max-width: 768px) {
+    .hero {
+        background-size: contain;
+        background-position: center top;
+        background-color: #1a1a1a; /* Fallback color */
+    }
+    
     .hero .hero-content {
         max-width: 90%;
         padding: 0 20px;
@@ -146,8 +153,15 @@
 }
 
 @media (max-width: 480px) {
+    .hero {
+        background-size: contain;
+        background-position: center center;
+        min-height: 100vh;
+    }
+    
     .hero .hero-content {
         max-width: 95%;
+        padding: 1rem 15px;
     }
     
     .hero .hero-content .hero-logo {
@@ -163,5 +177,13 @@
         padding: 0.8rem 1.5rem;
         font-size: 0.9rem;
         margin-top: 1.5rem;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 375px) {
+    .hero {
+        background-size: cover;
+        background-position: center center;
     }
 } 
