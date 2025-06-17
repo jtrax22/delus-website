@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="/" class="nav-link">Shop</a>
+            </div>
+            
+            <div class="logo">
+                <a href="/">Delus</a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('label') }}" class="nav-link">Record Label</a>
+                <a href="{{ url_for('music') }}" class="nav-link">What We're Listening To</a>
+                <a href="{{ url_for('about') }}" class="nav-link active">About</a>
+                <a href="#" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="about-split left-hero" style="
+            background-color: red;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ url_for('static', filename='images/WDelusive Eyes.JPG') }}');
+        ">
+        </div>
+        <div class="about-split right-hero" style="
+            background-color: blue;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('{{ url_for('static', filename='images/pray.jpg') }}');
+        ">
+        </div>
+        <div class="about-content">
+            <h1>About Us</h1>
+        </div>
+    </section>
+
+    <!-- About Content Section -->
+    <section class="about-content-section">
+        <div class="about-grid">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>We are brothers from Arizona with a lifelong passion for clothing and music. Since we were young, we've been inspired by the energy and creativity of fashion and electronic music.</p>
+                <p>As the fashion and electronic music scenes continue to evolve, we're committed to pushing boundaries and keeping things fresh, exciting, and uniquely our own. Whether it's through bold designs, immersive music events, or collaborations with like-minded creatives, we aim to bring a distinctive vibe to everything we do.</p>
+            </div>
+            <div class="about-image">
+                <img src="{{ url_for('static', filename='images/IMG_2576.JPG') }}" alt="About Delus">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Best Sellers</a></li>
+                    <li><a href="#">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Delus. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 

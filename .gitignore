@@ -1,0 +1,22 @@
+# Environment variables
+.env
+env_example.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+
+# Database
+instance/
+*.db
+
+# IDE
+.vscode/
+.DS_Store
+
+# Logs
+*.log 

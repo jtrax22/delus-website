@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delus - Fashion & Music</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/music.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/record_label.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-animation"></div>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="/">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-counter" class="badge">
+                        {{ session.get('cart', [])|length }}
+                    </span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero main-hero">
+        <div class="hero-content">
+            <a href="#featured" class="cta-button">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Collection -->
+    <section id="featured" class="featured-collection">
+        <h2 class="drop-title" data-text="DROP 001">DROP 001</h2>
+        <div class="collection-container">
+            <!-- First row: Products 1-2 -->
+            <div class="product-grid two-column">
+                <!-- First Product -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09089.jpg') }}" alt="Delus Trucker Hat - Front">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09093.jpg') }}" alt="Delus Trucker Hat - Side">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09098.jpg') }}" alt="Delus Trucker Hat - Back">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09102.jpg') }}" alt="Delus Trucker Hat - Detail">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Ritual Trucker - Black XL</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="1">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <!-- Second Product -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09203.jpg') }}" alt="Delus Trucker II - Front">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09205.jpg') }}" alt="Delus Trucker II - Side">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09215.jpg') }}" alt="Delus Trucker II - Back">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09221.jpg') }}" alt="Delus Trucker II - Detail">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Ritual Trucker - Grey XL</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="2">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Second row: Products 3-4 -->
+            <div class="product-grid two-column">
+                <!-- Third Product (placeholder) -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09114.JPG') }}" alt="Product 3">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09118.JPG') }}" alt="Product 3 - View 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09122.JPG') }}" alt="Product 3 - View 3">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09128.JPG') }}" alt="Product 3 - View 4">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Ritual Trucker - Maroon</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="3">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <!-- Fourth Product (placeholder) -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09155.JPG') }}" alt="Product 4">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09160.JPG') }}" alt="Product 4 - View 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09165.JPG') }}" alt="Product 4 - View 3">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09170.JPG') }}" alt="Product 4 - View 4">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Certified Trucker - Rose</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="4">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Third row: Products 5-6 -->
+            <div class="product-grid two-column">
+                <!-- Fifth Product (placeholder) -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09180.JPG') }}" alt="Product 5">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09183.JPG') }}" alt="Product 5 - View 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09190.JPG') }}" alt="Product 5 - View 3">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09195.JPG') }}" alt="Product 5 - View 4">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Certified Trucker - White</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="5">
+                        Add to Cart
+                    </button>
+                </div>
+                
+                <!-- Sixth Product (placeholder) -->
+                <div class="product-card">
+                    <div class="product-image-carousel">
+                        <div class="carousel-container">
+                            <button class="carousel-arrow carousel-prev">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <button class="carousel-arrow carousel-next">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <div class="carousel-slides">
+                                <div class="carousel-slide active">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09135.JPG') }}" alt="Product 6">
+                                </div>
+                                <!-- Additional product images -->
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09136.JPG') }}" alt="Product 6 - View 2">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09139.JPG') }}" alt="Product 6 - View 3">
+                                </div>
+                                <div class="carousel-slide">
+                                    <img src="{{ url_for('static', filename='images/hats/DSC09147.JPG') }}" alt="Product 6 - View 4">
+                                </div>
+                            </div>
+                            <div class="carousel-dots">
+                                <span class="dot active" data-index="0"></span>
+                                <span class="dot" data-index="1"></span>
+                                <span class="dot" data-index="2"></span>
+                                <span class="dot" data-index="3"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Certified Trucker - Black</h3>
+                    <p class="price">$60</p>
+                    <button class="add-to-cart" data-product-id="6">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Sets Section -->
+    <section id="livesets" class="tracks-container">
+        <div class="featured-track">
+            <h2 class="drop-title">Live Sets</h2>
+            
+
+
+            <!-- SoundCloud Embeds -->
+            <div class="track-player-embed">
+                <div class="soundcloud-player">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1825112544&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/jack-trax-412772982" title="Traxler" target="_blank" style="color: #cccccc; text-decoration: none;">Traxler</a> · <a href="https://soundcloud.com/jack-trax-412772982/delus-presents-traxler" title="Delüs Feature: Traxler" target="_blank" style="color: #cccccc; text-decoration: none;">Delüs Feature: Traxler</a></div>
+            </div>
+
+            <div class="track-player-embed">
+                <div class="soundcloud-player">
+<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2066889504&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/jack-trax-412772982" title="Traxler" target="_blank" style="color: #cccccc; text-decoration: none;">Traxler</a> · <a href="https://soundcloud.com/jack-trax-412772982/rockbar-329-traxler" title="RockBar 3/29/25 - Delus Scottsdale X Top Secret" target="_blank" style="color: #cccccc; text-decoration: none;">RockBar 3/29/25 - Delus Scottsdale X Top Secret</a></div>                </div>
+
+        </div>
+        <div class="track-player-embed">
+            <div class="soundcloud-player">
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2090066292&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/kda2478" title="Ched" target="_blank" style="color: #cccccc; text-decoration: none;">Ched</a> · <a href="https://soundcloud.com/kda2478/a-desert-ritual-rockbar-5-3" title="A Desert Ritual - Rockbar 5.3" target="_blank" style="color: #cccccc; text-decoration: none;">A Desert Ritual - Rockbar 5.3</a></div>
+    </div>
+    </section>
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#featured">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">Shipping</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Delus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/music.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/smooth-scroll.js') }}"></script>
+    <script>
+        // Cart functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            // Update button content to add shimmer effect
+            addToCartButtons.forEach(button => {
+                // Preserve original content but wrap text in a span
+                const originalHTML = button.innerHTML;
+                button.innerHTML = originalHTML;
+                
+                // Add sparkle particles
+                for (let i = 0; i < 5; i++) {
+                    const sparkle = document.createElement('span');
+                    sparkle.classList.add('sparkle');
+                    button.appendChild(sparkle);
+                }
+                
+                // Add shimmer effect on hover
+                button.addEventListener('mouseenter', function() {
+                    // Animate sparkles
+                    const sparkles = this.querySelectorAll('.sparkle');
+                    sparkles.forEach((sparkle, index) => {
+                        // Random position within button
+                        const x = Math.random() * 100;
+                        const y = Math.random() * 100;
+                        
+                        // Set initial position
+                        sparkle.style.left = x + '%';
+                        sparkle.style.top = y + '%';
+                        
+                        // Animate with delay based on index
+                        setTimeout(() => {
+                            sparkle.style.opacity = '1';
+                            sparkle.style.transform = 'scale(1.5)';
+                            sparkle.style.transition = 'all 0.6s ease';
+                            
+                            // Fade out after animation
+                            setTimeout(() => {
+                                sparkle.style.opacity = '0';
+                                sparkle.style.transform = 'scale(0)';
+                            }, 400);
+                        }, index * 100);
+                    });
+                });
+                
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-product-id');
+                    
+                    fetch(`/add-to-cart/${productId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: 'quantity=1'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update cart counter
+                        document.getElementById('cart-counter').textContent = data.cart_total;
+                        
+                        // Create a purple flash effect when added to cart
+                        const button = this;
+                        button.style.backgroundColor = 'rgba(100, 20, 150, 0.9)';
+                        button.style.boxShadow = '0 0 20px rgba(100, 20, 150, 0.5)';
+                        
+                        setTimeout(() => {
+                            button.style.backgroundColor = '';
+                            button.style.boxShadow = '';
+                        }, 500);
+                        
+                        // Show success message
+                        alert('Product added to cart!');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+            
+            // Image carousel functionality
+            const carousels = document.querySelectorAll('.carousel-container');
+            
+            carousels.forEach(carousel => {
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                const dots = carousel.querySelectorAll('.dot');
+                const prevBtn = carousel.querySelector('.carousel-prev');
+                const nextBtn = carousel.querySelector('.carousel-next');
+                let currentIndex = 0;
+                
+                // Touch variables
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                // Function to show a specific slide
+                function showSlide(index) {
+                    // Hide all slides and remove active class from dots
+                    slides.forEach(slide => slide.classList.remove('active'));
+                    dots.forEach(dot => dot.classList.remove('active'));
+                    
+                    // Show the current slide and add active class to current dot
+                    slides[index].classList.add('active');
+                    dots[index].classList.add('active');
+                    
+                    currentIndex = index;
+                }
+                
+                // Next slide function
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % slides.length;
+                    showSlide(currentIndex);
+                }
+                
+                // Previous slide function
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+                    showSlide(currentIndex);
+                }
+                
+                // Add event listeners to dots
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => showSlide(index));
+                });
+                
+                // Add event listeners to navigation buttons
+                if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+                if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+                
+                // Touch event handlers for mobile swipe
+                carousel.addEventListener('touchstart', function(e) {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, {passive: true});
+                
+                carousel.addEventListener('touchend', function(e) {
+                    touchEndX = e.changedTouches[0].screenX;
+                    handleSwipe();
+                }, {passive: true});
+                
+                function handleSwipe() {
+                    // Detect direction of swipe
+                    if (touchEndX < touchStartX - 50) {
+                        // Swipe left - next slide
+                        nextSlide();
+                    } else if (touchEndX > touchStartX + 50) {
+                        // Swipe right - previous slide
+                        prevSlide();
+                    }
+                }
+                
+                // Click on image to go to next slide
+                carousel.addEventListener('click', function(e) {
+                    // Only proceed if we clicked on the image, not the dots or arrows
+                    if (!e.target.closest('.carousel-dots') && 
+                        !e.target.closest('.carousel-arrow')) {
+                        nextSlide();
+                    }
+                });
+                
+                // Show first slide initially
+                showSlide(0);
+            });
+        });
+    </script>
+</body>
+</html>

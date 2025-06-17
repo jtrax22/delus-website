@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What We're Listening To - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/music.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="{{ url_for('home') }}" class="nav-link">Shop</a>
+            </div>
+            
+            <div class="logo">
+                <a href="{{ url_for('home') }}">Delus</a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('label') }}" class="nav-link">Records</a>
+                <a href="{{ url_for('music') }}" class="nav-link active">Live Sets</a>
+                <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                <a href="{{ url_for('cart') }}" class="cart-icon"><i class="fas fa-shopping-cart"></i></a>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <!-- Tracks Container -->
+    <div class="tracks-container">
+        <section class="featured-track">
+            <h2>Live Sets</h2>
+            
+            <!-- YouTube Video Embed -->
+            <div class="track-player-embed">
+                <div class="youtube-player">
+                    <iframe width="100%" height="315" 
+                            src="https://www.youtube.com/embed/ZY1Q1E5_i04" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen></iframe>
+                </div>
+            </div>
+
+            <!-- Existing SoundCloud Embeds -->
+            <div class="track-player-embed">
+                <div class="soundcloud-player">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/470610045&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe>
+                </div>
+            </div>
+
+            <div class="track-player-embed">
+                <div class="soundcloud-player">
+                    <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1988444619&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/emigalvan" title="Emi Galvan" target="_blank" style="color: #cccccc; text-decoration: none;">Emi Galvan</a> · <a href="https://soundcloud.com/emigalvan/underworld-dark-long-d-nox-emi-galvan-remix" title="FREE DOWNLOAD: Underworld - Dark &amp; Long (D-Nox &amp; Emi Galvan Remix) [PAF124]" target="_blank" style="color: #cccccc; text-decoration: none;">FREE DOWNLOAD: Underworld - Dark &amp; Long (D-Nox &amp; Emi Galvan Remix) [PAF124]</a></div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html> 

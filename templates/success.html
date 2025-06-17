@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Successful - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/Delus Logo A black background.png') }}" alt="Delus" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">{{ session.get('cart', [])|length }}</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="success-container">
+        <div class="success-message">
+            <i class="fas fa-check-circle"></i>
+            <h1>Order Successful!</h1>
+            {% if error %}
+                <p class="error">There was an issue retrieving your order details: {{ error }}</p>
+            {% else %}
+                <p>Thank you for your purchase. We've received your order and will process it shortly.</p>
+                {% if customer_email %}
+                <div class="order-details">
+                    <p>Confirmation sent to: {{ customer_email }}</p>
+                    <p>Order ID: {{ session_id }}</p>
+                </div>
+                {% endif %}
+            {% endif %}
+            <a href="{{ url_for('home') }}" class="return-btn">Return to Shop</a>
+        </div>
+    </div>
+    
+    <style>
+        .success-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 0 20px;
+        }
+        
+        .success-message {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+        
+        .success-message i {
+            font-size: 60px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .success-message h1 {
+            margin-bottom: 20px;
+        }
+        
+        .success-message p {
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .return-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .return-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .order-details {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .order-details p {
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+        
+        .error {
+            color: #ff6b6b;
+        }
+    </style>
+</body>
+</html> 

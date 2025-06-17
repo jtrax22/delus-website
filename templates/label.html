@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <!-- Label Description Section -->
+    <section class="mb-5">
+        <h1 class="display-4 mb-4">Delus Records</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <p class="lead">
+                    Welcome to Delus Records, where we curate and release cutting-edge electronic music 
+                    that pushes boundaries and moves dance floors.
+                </p>
+                <p>
+                    Founded with a passion for underground electronic music, we're dedicated to 
+                    showcasing both established artists and emerging talents who share our vision 
+                    for innovative sound design and compelling rhythms.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Releases Section -->
+    <section>
+        <h2 class="mb-4">Releases</h2>
+        <div class="row g-4">
+            {% for release in releases %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100">
+                    <img src="{{ url_for('static', filename=release.cover_url) }}" 
+                         class="card-img-top" 
+                         alt="{{ release.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ release.title }}</h5>
+                        <p class="card-text">{{ release.artist }}</p>
+                        <div class="soundcloud-embed">
+                            {% if release.source_type == 'soundcloud' %}
+                            <iframe width="100%" 
+                                    height="166" 
+                                    scrolling="no" 
+                                    frameborder="no" 
+                                    allow="autoplay" 
+                                    src="https://w.soundcloud.com/player/?url={{ release.audio_url }}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true">
+                            </iframe>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<style>
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card-img-top {
+        height: 300px;
+        object-fit: cover;
+    }
+    
+    .soundcloud-embed {
+        margin-top: 1rem;
+    }
+</style>
+{% endblock %} 

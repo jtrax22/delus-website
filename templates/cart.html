@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="{{ url_for('home') }}" class="nav-link">Return to Shop</a>
+            </div>
+            
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/Delus Logo A black background.png') }}" alt="Delus" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">{{ session.get('cart', [])|length }}</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="cart-container">
+        <h1>Your Cart</h1>
+        
+        {% if cart %}
+        <div class="cart-items">
+            {% for item in cart %}
+            <div class="cart-item">
+                <img src="{{ url_for('static', filename=item.image_url) }}" alt="{{ item.name }}">
+                <div class="item-details">
+                    <h3>{{ item.name }}</h3>
+                    <p>${{ "%.2f"|format(item.price) }} x {{ item.quantity }}</p>
+                    <p class="item-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+                </div>
+                <form action="{{ url_for('remove_from_cart', product_id=item.id) }}" method="post">
+                    <button type="submit" class="remove-btn">Remove</button>
+                </form>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="cart-summary">
+            <div class="summary-row">
+                <span>Subtotal:</span>
+                <span>${{ "%.2f"|format(total) }}</span>
+            </div>
+            <div class="summary-row">
+                <span>Shipping:</span>
+                <span>FREE</span>
+            </div>
+            <div class="summary-row total">
+                <span>Total:</span>
+                <span>${{ "%.2f"|format(total) }}</span>
+            </div>
+            
+            <button id="checkout-button" class="checkout-btn">Proceed to Checkout</button>
+        </div>
+        {% else %}
+        <div class="empty-cart">
+            <p>Your cart is empty</p>
+            <a href="{{ url_for('home') }}" class="continue-shopping">Continue Shopping</a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        const stripe = Stripe('{{ config.STRIPE_PUBLISHABLE_KEY }}');
+        const checkoutButton = document.getElementById('checkout-button');
+        
+        checkoutButton.addEventListener('click', function() {
+            fetch('/create-checkout-session', {
+                method: 'POST',
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(session) {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .then(function(result) {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+    
+    <style>
+        .cart-container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+        }
+        
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .item-details {
+            flex: 1;
+        }
+        
+        .remove-btn {
+            background: transparent;
+            color: #ff6b6b;
+            border: 1px solid #ff6b6b;
+            padding: 5px 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .remove-btn:hover {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .cart-summary {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .total {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .checkout-btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background: #45a049;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 50px 0;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .continue-shopping:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</body>
+</html> 

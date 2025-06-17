@@ -1,0 +1,167 @@
+/* Hero Section Styling */
+.hero {
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -80px;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* Main hero with background image - more minimal approach */
+.main-hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/Delus Mirage Logo.jpeg');
+}
+
+/* Remove the purple vignette overlay */
+.main-hero::before {
+    display: none;
+}
+
+/* Remove the purple pulsing light */
+.main-hero::after {
+    display: none;
+}
+
+.hero .hero-content {
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    max-width: 70%; /* Match the width of the product grid */
+    z-index: 5;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: static; /* Override any absolute positioning */
+    transform: none; /* Remove any transforms that might affect positioning */
+    margin: 0 auto;
+}
+
+/* Logo styling - more minimal */
+.hero .hero-content .hero-logo {
+    max-width: 60%; /* Control the width of the logo */
+    height: auto;
+    margin-bottom: 2rem;
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.5));
+    animation: none;
+}
+
+.hero .hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    margin-top: 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    width: 100%;
+    text-align: center; /* Ensure text is centered */
+}
+
+.hero .hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    text-align: center; /* Ensure text is centered */
+}
+
+.hero .hero-content .cta-button {
+    display: inline-block;
+    padding: 1.2rem 2.5rem;
+    background-color: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    margin-top: 1.5rem;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    box-shadow: none;
+}
+
+/* Simplify the button effect */
+.hero .cta-button::before {
+    display: none;
+}
+
+.hero .cta-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: none;
+    transform: translateY(-2px);
+}
+
+/* Mobile Styles */
+@media (max-width: 1200px) {
+    .hero .hero-content {
+        max-width: 80%;
+    }
+    
+    .hero .hero-content .hero-logo {
+        max-width: 70%;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero .hero-content {
+        max-width: 85%;
+    }
+    
+    .hero .hero-content .hero-logo {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero .hero-content {
+        max-width: 90%;
+        padding: 0 20px;
+    }
+    
+    .hero .hero-content .hero-logo {
+        max-width: 85%;
+    }
+    
+    .hero .hero-content h1 {
+        font-size: 3rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero .hero-content {
+        max-width: 95%;
+    }
+    
+    .hero .hero-content .hero-logo {
+        max-width: 90%;
+    }
+    
+    .hero .hero-content h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .hero .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        margin-top: 1.5rem;
+    }
+} 
