@@ -3,7 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Policy - Delus</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Delus Scottsdale Shipping Policy - Fast & Free Shipping | Arizona</title>
+    <meta name="description" content="Delus Scottsdale shipping policy: Free standard shipping, express & overnight options available. Fast delivery from Scottsdale, Arizona to US & Canada.">
+    <meta name="keywords" content="Delus Scottsdale shipping, Arizona fashion shipping, free shipping Scottsdale, fast delivery Arizona, Delus shipping policy">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Delus Scottsdale Shipping Policy - Fast & Free Shipping">
+    <meta property="og:description" content="Fast and reliable shipping from Scottsdale, Arizona. Free standard shipping and express options available.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://delus.co/shipping">
+    
+    <link rel="canonical" href="https://delus.co/shipping">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -16,13 +29,13 @@
             </div>
             
             <div class="logo">
-                <a href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                <a href="{{ url_for('home') }}" aria-label="Delus Scottsdale Homepage">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus Scottsdale" class="logo-image">
                 </a>
             </div>
             
             <div class="nav-right">
-                <a href="{{ url_for('cart') }}" class="cart-icon">
+                <a href="{{ url_for('cart') }}" class="cart-icon" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge">{{ session.get('cart', [])|length }}</span>
                 </a>
@@ -33,13 +46,14 @@
     <!-- Page Content -->
     <div class="policy-container">
         <div class="policy-header">
-            <h1><i class="fas fa-shipping-fast"></i> Shipping Policy</h1>
-            <p>Learn about our shipping options and delivery times</p>
+            <h1><i class="fas fa-shipping-fast"></i> Delus Scottsdale Shipping Policy</h1>
+            <p>Fast and reliable shipping from Scottsdale, Arizona</p>
         </div>
 
         <div class="policy-content">
             <div class="policy-section">
-                <h2>Shipping Methods</h2>
+                <h2>Shipping Methods from Scottsdale</h2>
+                <p>All orders ship from our Scottsdale, Arizona location with tracking provided.</p>
                 <div class="shipping-options">
                     <div class="shipping-option">
                         <div class="option-icon">

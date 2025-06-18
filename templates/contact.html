@@ -3,7 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Delus</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Contact Delus Scottsdale - Customer Support | Arizona Fashion Brand</title>
+    <meta name="description" content="Contact Delus Scottsdale for customer support, order inquiries, and returns. Located in Scottsdale, Arizona. Email, phone, and live chat support available.">
+    <meta name="keywords" content="contact Delus Scottsdale, customer support Arizona, Delus help, Scottsdale fashion brand contact, Arizona streetwear support">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contact Delus Scottsdale - Customer Support">
+    <meta property="og:description" content="Get in touch with Delus Scottsdale for customer support, order help, and inquiries. Based in Scottsdale, Arizona.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://delus.co/contact">
+    
+    <!-- Local Business Contact Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "Delus Scottsdale",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "123 Delus Street",
+          "addressLocality": "Scottsdale",
+          "addressRegion": "Arizona",
+          "postalCode": "85251",
+          "addressCountry": "US"
+        },
+        "telephone": "1-800-DELUS-HELP",
+        "email": "support@delus.com",
+        "url": "https://delus.co",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "1-800-DELUS-HELP",
+          "contactType": "customer service",
+          "availableLanguage": "English",
+          "areaServed": "US"
+        }
+      }
+    }
+    </script>
+    
+    <link rel="canonical" href="https://delus.co/contact">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -16,13 +59,13 @@
             </div>
             
             <div class="logo">
-                <a href="{{ url_for('home') }}">
-                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                <a href="{{ url_for('home') }}" aria-label="Delus Scottsdale Homepage">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus Scottsdale" class="logo-image">
                 </a>
             </div>
             
             <div class="nav-right">
-                <a href="{{ url_for('cart') }}" class="cart-icon">
+                <a href="{{ url_for('cart') }}" class="cart-icon" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="badge">{{ session.get('cart', [])|length }}</span>
                 </a>
@@ -33,8 +76,8 @@
     <!-- Page Content -->
     <div class="contact-container">
         <div class="contact-header">
-            <h1><i class="fas fa-envelope"></i> Contact Us</h1>
-            <p>We're here to help! Get in touch with our team</p>
+            <h1><i class="fas fa-envelope"></i> Contact Delus Scottsdale</h1>
+            <p>We're here to help! Get in touch with our Scottsdale-based team</p>
         </div>
 
         <div class="contact-content">
@@ -46,11 +89,11 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="name">Full Name *</label>
-                                <input type="text" id="name" name="name" required>
+                                <input type="text" id="name" name="name" required aria-required="true">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email Address *</label>
-                                <input type="email" id="email" name="email" required>
+                                <input type="email" id="email" name="email" required aria-required="true">
                             </div>
                         </div>
                         
@@ -67,7 +110,7 @@
                         
                         <div class="form-group">
                             <label for="subject">Subject *</label>
-                            <select id="subject" name="subject" required>
+                            <select id="subject" name="subject" required aria-required="true">
                                 <option value="">Select a topic</option>
                                 <option value="order_inquiry">Order Inquiry</option>
                                 <option value="return_exchange">Return/Exchange</option>
@@ -81,7 +124,7 @@
                         
                         <div class="form-group">
                             <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Please provide as much detail as possible..."></textarea>
+                            <textarea id="message" name="message" rows="6" required aria-required="true" placeholder="Please provide as much detail as possible..."></textarea>
                         </div>
                         
                         <button type="submit" class="submit-btn">
@@ -95,7 +138,7 @@
             <!-- Contact Information -->
             <div class="contact-info-section">
                 <div class="info-container">
-                    <h2>Get in Touch</h2>
+                    <h2>Get in Touch with Delus Scottsdale</h2>
                     
                     <div class="contact-methods">
                         <div class="contact-method">
@@ -104,7 +147,7 @@
                             </div>
                             <div class="method-content">
                                 <h4>Email Support</h4>
-                                <p>support@delus.com</p>
+                                <p><a href="mailto:support@delus.com">support@delus.com</a></p>
                                 <span class="response-time">Response within 24 hours</span>
                             </div>
                         </div>
@@ -115,8 +158,8 @@
                             </div>
                             <div class="method-content">
                                 <h4>Phone Support</h4>
-                                <p>1-800-DELUS-HELP</p>
-                                <span class="response-time">Mon-Fri, 9AM-6PM EST</span>
+                                <p><a href="tel:1-800-DELUS-HELP">1-800-DELUS-HELP</a></p>
+                                <span class="response-time">Mon-Fri, 9AM-6PM MST</span>
                             </div>
                         </div>
                         
@@ -127,7 +170,7 @@
                             <div class="method-content">
                                 <h4>Live Chat</h4>
                                 <p>Available on our website</p>
-                                <span class="response-time">Mon-Fri, 9AM-6PM EST</span>
+                                <span class="response-time">Mon-Fri, 9AM-6PM MST</span>
                             </div>
                         </div>
                         
@@ -136,19 +179,22 @@
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <div class="method-content">
-                                <h4>Address</h4>
-                                <p>123 Delus Street<br>Scottsdale, AZ 85251</p>
+                                <h4>Scottsdale Location</h4>
+                                <address>
+                                    123 Delus Street<br>
+                                    Scottsdale, AZ 85251
+                                </address>
                                 <span class="response-time">Visit by appointment</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="social-section">
-                        <h3>Follow Us</h3>
+                        <h3>Follow Delus Scottsdale</h3>
                         <div class="social-links">
-                            <a href="#" class="social-link">
+                            <a href="https://www.instagram.com/delus.co/" class="social-link" target="_blank" rel="noopener">
                                 <i class="fab fa-instagram"></i>
-                                <span>@delus</span>
+                                <span>@delus.co</span>
                             </a>
                             <a href="#" class="social-link">
                                 <i class="fab fa-twitter"></i>
@@ -169,23 +215,23 @@
             <h2>Frequently Asked Questions</h2>
             <div class="faq-grid">
                 <div class="faq-item">
-                    <h4>How long does shipping take?</h4>
-                    <p>Standard shipping takes 5-7 business days. Express options available.</p>
+                    <h4>How long does shipping take from Scottsdale?</h4>
+                    <p>Standard shipping takes 5-7 business days. Express options available for faster delivery.</p>
                     <a href="{{ url_for('shipping') }}">Learn more about shipping</a>
                 </div>
                 <div class="faq-item">
                     <h4>What's your return policy?</h4>
-                    <p>30-day returns with free return shipping on all orders.</p>
+                    <p>30-day returns with free return shipping on all Delus Scottsdale orders.</p>
                     <a href="{{ url_for('returns') }}">View return policy</a>
                 </div>
                 <div class="faq-item">
                     <h4>How can I track my order?</h4>
-                    <p>You'll receive a tracking number via email once your order ships.</p>
+                    <p>You'll receive a tracking number via email once your order ships from our Scottsdale location.</p>
                     <a href="#">Track your order</a>
                 </div>
                 <div class="faq-item">
                     <h4>Do you offer international shipping?</h4>
-                    <p>Currently shipping to US and Canada. International coming soon!</p>
+                    <p>Currently shipping to US and Canada from Scottsdale. International coming soon!</p>
                     <a href="{{ url_for('shipping') }}">View shipping locations</a>
                 </div>
             </div>

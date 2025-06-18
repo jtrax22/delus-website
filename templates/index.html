@@ -3,7 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delus - Fashion & Music</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>Delus Scottsdale - Premium Fashion & Electronic Music | Arizona Streetwear</title>
+    <meta name="description" content="Delus Scottsdale - Premium streetwear and electronic music from Arizona. Shop exclusive trucker hats, clothing collections, and discover underground music culture in Scottsdale.">
+    <meta name="keywords" content="Delus Scottsdale, Arizona streetwear, electronic music Scottsdale, premium fashion Arizona, trucker hats, underground music, fashion brand Scottsdale">
+    <meta name="author" content="Delus Scottsdale">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://delus.co/">
+    <meta property="og:title" content="Delus Scottsdale - Premium Fashion & Electronic Music">
+    <meta property="og:description" content="Premium streetwear and electronic music from Scottsdale, Arizona. Shop exclusive collections and discover underground music culture.">
+    <meta property="og:image" content="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png', _external=True) }}">
+    <meta property="og:site_name" content="Delus Scottsdale">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://delus.co/">
+    <meta property="twitter:title" content="Delus Scottsdale - Premium Fashion & Electronic Music">
+    <meta property="twitter:description" content="Premium streetwear and electronic music from Scottsdale, Arizona. Shop exclusive collections and discover underground music culture.">
+    <meta property="twitter:image" content="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png', _external=True) }}">
+    
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "Delus Scottsdale",
+      "description": "Premium streetwear and electronic music brand from Scottsdale, Arizona",
+      "url": "https://delus.co",
+      "logo": "{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png', _external=True) }}",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Delus Street",
+        "addressLocality": "Scottsdale",
+        "addressRegion": "Arizona",
+        "postalCode": "85251",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "33.4942",
+        "longitude": "-111.9261"
+      },
+      "telephone": "1-800-DELUS-HELP",
+      "email": "support@delus.com",
+      "sameAs": [
+        "https://www.instagram.com/delus.co/"
+      ],
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "priceRange": "$40-$80",
+      "paymentAccepted": "Credit Card, Debit Card, PayPal",
+      "currenciesAccepted": "USD"
+    }
+    </script>
+    
+    <!-- Product Schema for Featured Items -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Delus Scottsdale Featured Products",
+      "description": "Premium trucker hats and streetwear from Delus Scottsdale",
+      "itemListElement": [
+        {
+          "@type": "Product",
+          "position": 1,
+          "name": "Ritual Trucker Hat - Black XL",
+          "description": "Essential Delus Scottsdale trucker hat in premium black",
+          "brand": {
+            "@type": "Brand",
+            "name": "Delus Scottsdale"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "60.00",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock",
+            "seller": {
+              "@type": "Organization",
+              "name": "Delus Scottsdale"
+            }
+          }
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://delus.co/">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/music.css') }}">
@@ -20,13 +116,13 @@
     <header>
         <nav class="main-nav">
             <div class="logo">
-                <a href="/">
-                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                <a href="/" aria-label="Delus Scottsdale Homepage">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus Scottsdale - Premium Fashion & Music" class="logo-image">
                 </a>
             </div>
             
             <div class="nav-right">
-                <a href="{{ url_for('cart') }}" class="cart-icon">
+                <a href="{{ url_for('cart') }}" class="cart-icon" aria-label="Shopping Cart">
                     <i class="fas fa-shopping-cart"></i>
                     <span id="cart-counter" class="badge">
                         {{ session.get('cart', [])|length }}
@@ -39,13 +135,15 @@
     <!-- Hero Section -->
     <section class="hero main-hero">
         <div class="hero-content">
-            <a href="#featured" class="cta-button">Shop Now</a>
+            <h1 class="sr-only">Delus Scottsdale - Premium Fashion and Electronic Music from Arizona</h1>
+            <a href="#featured" class="cta-button" aria-label="Shop Delus Scottsdale Collection">Shop Now</a>
         </div>
     </section>
 
     <!-- Featured Collection -->
     <section id="featured" class="featured-collection">
         <h2 class="drop-title" data-text="DROP 001">DROP 001</h2>
+        <p class="collection-description">Exclusive Delus Scottsdale premium streetwear collection featuring hand-crafted trucker hats and fashion-forward designs from Arizona.</p>
         <div class="collection-container">
             <!-- First row: Products 1-2 -->
             <div class="product-grid two-column">
