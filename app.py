@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify, request, session, redirect, url_for, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from models import db, Product, Track
 import os
 from werkzeug.utils import secure_filename
@@ -28,7 +27,6 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # Initialize database
 db.init_app(app)
-migrate = Migrate(app, db)
 
 # Create tables
 with app.app_context():
@@ -157,6 +155,10 @@ with app.app_context():
 def initialize_cart():
     if 'cart' not in session:
         session['cart'] = []
+    # Clear any old cart format data to ensure consistency
+    elif session['cart'] and isinstance(session['cart'][0], dict) and 'name' in session['cart'][0]:
+        # This is old format cart data, clear it
+        session['cart'] = []
 
 @app.route('/')
 def home():
@@ -250,7 +252,7 @@ def add_to_cart(product_id):
     current_cart_quantity = 0
     
     for item in cart:
-        if item['id'] == product_id:
+        if item['product_id'] == product_id:
             current_cart_quantity = item['quantity']
             # Check if adding more would exceed stock
             if current_cart_quantity + quantity > product.stock:
@@ -264,11 +266,8 @@ def add_to_cart(product_id):
     
     if not item_found:
         cart.append({
-            'id': product_id,
-            'name': product.name,
-            'price': float(product.price),
-            'quantity': quantity,
-            'image_url': product_images.get(product_id, product.image_url)
+            'product_id': product_id,
+            'quantity': quantity
         })
     
     session['cart'] = cart
@@ -285,10 +284,38 @@ def add_to_cart(product_id):
 
 @app.route('/cart')
 def cart():
+    cart_items = session.get('cart', [])
     cart_products = []
-    if 'cart' in session and session['cart']:
-        cart_products = Product.query.filter(Product.id.in_(session['cart'])).all()
-    return render_template('cart.html', products=cart_products)
+    total = 0
+    
+    # Map product ID to correct image URL (the first image from carousel)
+    product_images = {
+        1: 'images/hats/DSC09089.jpg',
+        2: 'images/hats/DSC09203.JPG',
+        3: 'images/hats/DSC09114.JPG',
+        4: 'images/hats/DSC09155.JPG',
+        5: 'images/hats/DSC09180.JPG',
+        6: 'images/hats/DSC09135.jpg'
+    }
+    
+    if cart_items:
+        for cart_item in cart_items:
+            # Fetch current product data from database
+            product = Product.query.get(cart_item['product_id'])
+            if product:
+                item_total = product.price * cart_item['quantity']
+                total += item_total
+                
+                cart_products.append({
+                    'id': product.id,
+                    'name': product.name,
+                    'price': product.price,
+                    'quantity': cart_item['quantity'],
+                    'image_url': product_images.get(product.id, product.image_url),
+                    'item_total': item_total
+                })
+    
+    return render_template('cart.html', cart=cart_products, total=total)
 
 @app.route('/shipping')
 def shipping():
@@ -310,11 +337,26 @@ def sitemap():
 def robots():
     return send_from_directory('.', 'robots.txt', mimetype='text/plain')
 
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory('static/images', 'favicon-32x32.png', mimetype='image/png')
+
+@app.route('/clear-cart')
+def clear_cart():
+    session['cart'] = []
+    return redirect(url_for('home'))
+
+@app.route('/reset-db')
+def reset_database():
+    reset_db()
+    session['cart'] = []
+    return "Database reset and cart cleared!"
+
 @app.route('/remove-from-cart/<int:product_id>', methods=['POST'])
 def remove_from_cart(product_id):
     if 'cart' in session:
         cart = session['cart']
-        session['cart'] = [item for item in cart if item['id'] != product_id]
+        session['cart'] = [item for item in cart if item['product_id'] != product_id]
     return redirect(url_for('cart'))
 
 @app.route('/create-checkout-session', methods=['POST'])
@@ -325,17 +367,32 @@ def create_checkout_session():
         if not cart:
             return jsonify({'error': 'Your cart is empty'}), 400
         
-        line_items = [{
-            'price_data': {
-                'currency': 'usd',
-                'product_data': {
-                    'name': item['name'],
-                    'images': [request.host_url + 'static/' + item['image_url']] if item.get('image_url') else [],
-                },
-                'unit_amount': int(item['price'] * 100),  # Stripe expects amounts in cents
-            },
-            'quantity': item['quantity'],
-        } for item in cart]
+        # Map product ID to correct image URL
+        product_images = {
+            1: 'images/hats/DSC09089.jpg',
+            2: 'images/hats/DSC09203.JPG',
+            3: 'images/hats/DSC09114.JPG',
+            4: 'images/hats/DSC09155.JPG',
+            5: 'images/hats/DSC09180.JPG',
+            6: 'images/hats/DSC09135.jpg'
+        }
+        
+        line_items = []
+        for cart_item in cart:
+            # Fetch current product data from database
+            product = Product.query.get(cart_item['product_id'])
+            if product:
+                line_items.append({
+                    'price_data': {
+                        'currency': 'usd',
+                        'product_data': {
+                            'name': product.name,
+                            'images': [request.host_url + 'static/' + product_images.get(product.id, product.image_url)] if product_images.get(product.id) else [],
+                        },
+                        'unit_amount': int(product.price * 100),  # Stripe expects amounts in cents
+                    },
+                    'quantity': cart_item['quantity'],
+                })
 
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],

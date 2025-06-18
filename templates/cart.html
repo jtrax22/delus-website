@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart - Delus</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://js.stripe.com/v3/"></script>
@@ -42,7 +48,7 @@
                 <div class="item-details">
                     <h3>{{ item.name }}</h3>
                     <p>${{ "%.2f"|format(item.price) }} x {{ item.quantity }}</p>
-                    <p class="item-total">${{ "%.2f"|format(item.price * item.quantity) }}</p>
+                    <p class="item-total">${{ "%.2f"|format(item.item_total) }}</p>
                 </div>
                 <form action="{{ url_for('remove_from_cart', product_id=item.id) }}" method="post">
                     <button type="submit" class="remove-btn">Remove</button>

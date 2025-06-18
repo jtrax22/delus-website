@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Delus Scottsdale - Premium Fashion & Electronic Music | Arizona Streetwear</title>
+    <title>Delus Scottsdale - Fashion & Music </title>
     <meta name="description" content="Delus Scottsdale - Premium streetwear and electronic music from Arizona. Shop exclusive trucker hats, clothing collections, and discover underground music culture in Scottsdale.">
     <meta name="keywords" content="Delus Scottsdale, Arizona streetwear, electronic music Scottsdale, premium fashion Arizona, trucker hats, underground music, fashion brand Scottsdale">
     <meta name="author" content="Delus Scottsdale">
@@ -97,8 +97,14 @@
     <link rel="canonical" href="https://delus.co/">
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='images/favicon-16x16.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon-32x32.png') }}">
+    <meta name="msapplication-TileImage" content="{{ url_for('static', filename='images/android-chrome-192x192.png') }}">
+    <meta name="msapplication-TileColor" content="#070510">
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
     
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/hero.css') }}">
