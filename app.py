@@ -234,6 +234,16 @@ def add_to_cart(product_id):
     if 'cart' not in session:
         session['cart'] = []
     
+    # Map product ID to correct image URL (the first image from carousel)
+    product_images = {
+        1: 'images/hats/DSC09089.jpg',
+        2: 'images/hats/DSC09203.JPG',
+        3: 'images/hats/DSC09114.JPG',
+        4: 'images/hats/DSC09155.JPG',
+        5: 'images/hats/DSC09180.JPG',
+        6: 'images/hats/DSC09135.jpg'
+    }
+    
     # Check if product already in cart
     cart = session['cart']
     item_found = False
@@ -258,20 +268,39 @@ def add_to_cart(product_id):
             'name': product.name,
             'price': float(product.price),
             'quantity': quantity,
-            'image_url': product.image_url
+            'image_url': product_images.get(product_id, product.image_url)
         })
     
     session['cart'] = cart
     return jsonify({
+        'success': True,
         'message': 'Product added to cart',
-        'cart_total': len(cart)
+        'cart_total': len(cart),
+        'product': {
+            'name': product.name,
+            'price': float(product.price),
+            'image_url': product_images.get(product_id, product.image_url)
+        }
     })
 
 @app.route('/cart')
 def cart():
-    cart = session.get('cart', [])
-    total = sum(item['price'] * item['quantity'] for item in cart)
-    return render_template('cart.html', cart=cart, total=total)
+    cart_products = []
+    if 'cart' in session and session['cart']:
+        cart_products = Product.query.filter(Product.id.in_(session['cart'])).all()
+    return render_template('cart.html', products=cart_products)
+
+@app.route('/shipping')
+def shipping():
+    return render_template('shipping.html')
+
+@app.route('/returns')
+def returns():
+    return render_template('returns.html')
+
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 @app.route('/remove-from-cart/<int:product_id>', methods=['POST'])
 def remove_from_cart(product_id):

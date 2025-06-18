@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Policy - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="{{ url_for('home') }}" class="nav-link">Shop</a>
+            </div>
+            
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">{{ session.get('cart', [])|length }}</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <div class="policy-container">
+        <div class="policy-header">
+            <h1><i class="fas fa-shipping-fast"></i> Shipping Policy</h1>
+            <p>Learn about our shipping options and delivery times</p>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>Shipping Methods</h2>
+                <div class="shipping-options">
+                    <div class="shipping-option">
+                        <div class="option-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="option-details">
+                            <h3>Free Standard Shipping</h3>
+                            <p>5-7 business days delivery</p>
+                            <span class="price">FREE</span>
+                        </div>
+                    </div>
+                    <div class="shipping-option">
+                        <div class="option-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="option-details">
+                            <h3>Express Shipping</h3>
+                            <p>2-3 business days delivery</p>
+                            <span class="price">$12.99</span>
+                        </div>
+                    </div>
+                    <div class="shipping-option">
+                        <div class="option-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="option-details">
+                            <h3>Overnight Shipping</h3>
+                            <p>Next business day delivery</p>
+                            <span class="price">$24.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>Shipping Locations</h2>
+                <p>We currently ship to:</p>
+                <ul class="shipping-locations">
+                    <li><i class="fas fa-flag-usa"></i> United States (all 50 states)</li>
+                    <li><i class="fas fa-flag"></i> Canada</li>
+                </ul>
+                <p class="note">International shipping coming soon! Stay tuned for updates.</p>
+            </div>
+
+            <div class="policy-section">
+                <h2>Processing Time</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Order Processing</h4>
+                            <p>Orders are processed within 1-2 business days after payment confirmation.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Packaging</h4>
+                            <p>Items are carefully packaged to ensure they arrive in perfect condition.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Shipment</h4>
+                            <p>You'll receive a tracking number via email once your order ships.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>Order Tracking</h2>
+                <p>Once your order is shipped, you'll receive an email with:</p>
+                <ul>
+                    <li>Tracking number</li>
+                    <li>Carrier information</li>
+                    <li>Estimated delivery date</li>
+                    <li>Direct link to track your package</li>
+                </ul>
+            </div>
+
+            <div class="policy-section">
+                <h2>Special Instructions</h2>
+                <div class="info-boxes">
+                    <div class="info-box">
+                        <i class="fas fa-home"></i>
+                        <h4>Delivery Requirements</h4>
+                        <p>Someone must be available to receive the package. If no one is available, the carrier will leave a delivery notice.</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h4>Business Days</h4>
+                        <p>Shipping times are calculated in business days (Monday-Friday, excluding holidays).</p>
+                    </div>
+                    <div class="info-box">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h4>Weather Delays</h4>
+                        <p>Severe weather conditions may cause shipping delays beyond our control.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section contact-section">
+                <h2>Questions About Shipping?</h2>
+                <p>If you have any questions about shipping or need to make changes to your order, please contact us:</p>
+                <div class="contact-info">
+                    <a href="{{ url_for('contact') }}" class="contact-btn">
+                        <i class="fas fa-envelope"></i>
+                        Contact Support
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#featured">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="{{ url_for('shipping') }}">Shipping</a></li>
+                    <li><a href="{{ url_for('returns') }}">Returns</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Delus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .policy-container {
+            max-width: 1000px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(7, 5, 16, 0.95) 0%, rgba(15, 10, 25, 0.95) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(120, 40, 180, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(120, 40, 180, 0.3);
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .policy-header h1 i {
+            color: rgba(140, 60, 210, 0.9);
+            margin-right: 0.5rem;
+        }
+
+        .policy-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .policy-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .policy-section {
+            background: linear-gradient(135deg, rgba(7, 5, 16, 0.8) 0%, rgba(15, 10, 25, 0.8) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(120, 40, 180, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .policy-section h2 {
+            color: rgba(140, 60, 210, 0.9);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .shipping-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .shipping-option {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .shipping-option:hover {
+            border-color: rgba(140, 60, 220, 0.5);
+            box-shadow: 0 5px 15px rgba(120, 40, 180, 0.3);
+        }
+
+        .option-icon {
+            font-size: 2rem;
+            color: rgba(140, 60, 210, 0.9);
+            min-width: 60px;
+            text-align: center;
+        }
+
+        .option-details h3 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .option-details p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0 0.5rem 0;
+        }
+
+        .price {
+            color: rgba(140, 60, 210, 0.9);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .shipping-locations {
+            list-style: none;
+            padding: 0;
+        }
+
+        .shipping-locations li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            color: var(--text-color);
+            border-bottom: 1px solid rgba(120, 40, 180, 0.2);
+        }
+
+        .shipping-locations li:last-child {
+            border-bottom: none;
+        }
+
+        .shipping-locations i {
+            color: rgba(140, 60, 210, 0.9);
+            font-size: 1.2rem;
+        }
+
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .timeline-icon {
+            font-size: 1.5rem;
+            color: rgba(140, 60, 210, 0.9);
+            min-width: 40px;
+            text-align: center;
+            margin-top: 0.25rem;
+        }
+
+        .timeline-content h4 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .info-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .info-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+            text-align: center;
+        }
+
+        .info-box i {
+            font-size: 2rem;
+            color: rgba(140, 60, 210, 0.9);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .info-box h4 {
+            color: var(--text-color);
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .info-box p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .note {
+            background: rgba(140, 60, 210, 0.1);
+            border: 1px solid rgba(140, 60, 210, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            color: rgba(140, 60, 210, 0.9);
+            font-style: italic;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(120, 40, 180, 0.1) 0%, rgba(100, 30, 150, 0.1) 100%);
+            border: 1px solid rgba(140, 60, 220, 0.4);
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(120, 40, 180, 0.8), rgba(100, 30, 150, 0.8));
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(135deg, rgba(140, 60, 220, 0.9), rgba(120, 40, 200, 0.9));
+            box-shadow: 0 5px 15px rgba(140, 60, 220, 0.4);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .policy-section ul {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+        }
+
+        .policy-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .policy-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                margin: 100px auto 30px;
+                padding: 0 15px;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+
+            .shipping-options {
+                grid-template-columns: 1fr;
+            }
+
+            .info-boxes {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html> 

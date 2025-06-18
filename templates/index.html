@@ -358,11 +358,29 @@
     </div>
     </section>
 
-
-
-
-
-
+    <!-- Minimal Cart Popup -->
+    <div id="cart-popup" class="cart-popup">
+        <div class="popup-content">
+            <div class="popup-header">
+                <i class="fas fa-check-circle"></i>
+                <span>Added to Cart</span>
+            </div>
+            <div class="popup-body">
+                <img id="popup-product-image" src="" alt="Product">
+                <div class="popup-details">
+                    <h4 id="popup-product-name"></h4>
+                    <p class="price" id="popup-product-price"></p>
+                    <div class="cart-summary">
+                        <span class="cart-count">Cart: <strong id="popup-cart-total">0</strong> items</span>
+                    </div>
+                </div>
+            </div>
+            <div class="popup-actions">
+                <button id="continue-shopping" class="continue-btn">Continue Shopping</button>
+                <a href="/cart" class="view-cart-btn">View Cart (<span id="popup-cart-total-2">0</span>)</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -376,17 +394,15 @@
             <div class="footer-section">
                 <h3>Help</h3>
                 <ul>
-                    <li><a href="#">Shipping</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="{{ url_for('shipping') }}">Shipping</a></li>
+                    <li><a href="{{ url_for('returns') }}">Returns</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Connect</h3>
                 <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-spotify"></i></a>
+                    <a href="https://www.instagram.com/delus.co/?hl=en"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
@@ -398,9 +414,48 @@
     <script src="{{ url_for('static', filename='js/music.js') }}"></script>
     <script src="{{ url_for('static', filename='js/smooth-scroll.js') }}"></script>
     <script>
+        // Simple popup functions
+        function showCartPopup(productData, cartTotal) {
+            const popup = document.getElementById('cart-popup');
+            const productImage = document.getElementById('popup-product-image');
+            const productName = document.getElementById('popup-product-name');
+            const productPrice = document.getElementById('popup-product-price');
+            const cartTotalSpan = document.getElementById('popup-cart-total');
+            const cartTotalSpan2 = document.getElementById('popup-cart-total-2');
+            
+            // Set product data
+            productImage.src = `/static/${productData.image_url}`;
+            productName.textContent = productData.name;
+            productPrice.textContent = `$${productData.price}`;
+            cartTotalSpan.textContent = cartTotal;
+            cartTotalSpan2.textContent = cartTotal;
+            
+            // Show popup
+            popup.style.display = 'flex';
+            setTimeout(() => {
+                popup.classList.add('show');
+            }, 10);
+            
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                hideCartPopup();
+            }, 3000);
+        }
+        
+        function hideCartPopup() {
+            const popup = document.getElementById('cart-popup');
+            popup.classList.remove('show');
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 300);
+        }
+
         // Cart functionality
         document.addEventListener('DOMContentLoaded', function() {
             const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            
+            // Setup continue shopping button
+            document.getElementById('continue-shopping').addEventListener('click', hideCartPopup);
             
             // Update button content to add shimmer effect
             addToCartButtons.forEach(button => {
@@ -446,6 +501,10 @@
                 button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-product-id');
                     
+                    // Disable button temporarily
+                    this.disabled = true;
+                    this.style.opacity = '0.7';
+                    
                     fetch(`/add-to-cart/${productId}`, {
                         method: 'POST',
                         headers: {
@@ -455,24 +514,37 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        // Update cart counter
-                        document.getElementById('cart-counter').textContent = data.cart_total;
+                        if (data.success) {
+                            // Update cart counter
+                            document.getElementById('cart-counter').textContent = data.cart_total;
+                            
+                            // Create a purple flash effect when added to cart
+                            const button = this;
+                            button.style.backgroundColor = 'rgba(100, 20, 150, 0.9)';
+                            button.style.boxShadow = '0 0 20px rgba(100, 20, 150, 0.5)';
+                            
+                            setTimeout(() => {
+                                button.style.backgroundColor = '';
+                                button.style.boxShadow = '';
+                            }, 500);
+                            
+                            // Show custom popup instead of generic alert
+                            showCartPopup(data.product, data.cart_total);
+                        } else {
+                            // Handle errors (like out of stock)
+                            alert(data.error || 'Error adding to cart');
+                        }
                         
-                        // Create a purple flash effect when added to cart
-                        const button = this;
-                        button.style.backgroundColor = 'rgba(100, 20, 150, 0.9)';
-                        button.style.boxShadow = '0 0 20px rgba(100, 20, 150, 0.5)';
-                        
-                        setTimeout(() => {
-                            button.style.backgroundColor = '';
-                            button.style.boxShadow = '';
-                        }, 500);
-                        
-                        // Show success message
-                        alert('Product added to cart!');
+                        // Re-enable button
+                        this.disabled = false;
+                        this.style.opacity = '1';
                     })
                     .catch(error => {
                         console.error('Error:', error);
+                        alert('Error adding to cart');
+                        // Re-enable button
+                        this.disabled = false;
+                        this.style.opacity = '1';
                     });
                 });
             });

@@ -1119,4 +1119,184 @@ footer {
 
 .product-card button.add-to-cart.sold-out .sparkle {
     display: none !important;
+}
+
+/* Minimal Cart Popup Styles - Dark Theme */
+.cart-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(8px);
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 100px;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cart-popup.show {
+    opacity: 1;
+}
+
+.cart-popup .popup-content {
+    background: linear-gradient(135deg, rgba(7, 5, 16, 0.95) 0%, rgba(15, 10, 25, 0.95) 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    max-width: 350px;
+    width: 90%;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(120, 40, 180, 0.3);
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(120, 40, 180, 0.4);
+    backdrop-filter: blur(15px);
+}
+
+.cart-popup.show .popup-content {
+    transform: translateY(0);
+}
+
+.cart-popup .popup-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+    color: #4CAF50;
+}
+
+.cart-popup .popup-header i {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.6));
+}
+
+.cart-popup .popup-header span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cart-popup .popup-body {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid rgba(120, 40, 180, 0.2);
+}
+
+.cart-popup .popup-body img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid rgba(120, 40, 180, 0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.cart-popup .popup-details h4 {
+    color: var(--text-color);
+    margin: 0 0 0.3rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cart-popup .popup-details .price {
+    color: rgba(140, 60, 210, 0.9);
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cart-popup .cart-count {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+}
+
+.cart-popup .cart-count strong {
+    color: rgba(140, 60, 210, 0.9);
+    font-weight: 600;
+}
+
+.cart-popup .popup-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.cart-popup .continue-btn {
+    background: rgba(25, 15, 40, 0.8);
+    color: var(--text-color);
+    border: 1px solid rgba(120, 40, 180, 0.4);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    backdrop-filter: blur(10px);
+}
+
+.cart-popup .continue-btn:hover {
+    background: rgba(40, 25, 60, 0.9);
+    border-color: rgba(140, 60, 220, 0.6);
+    box-shadow: 0 0 10px rgba(120, 40, 180, 0.4);
+    transform: translateY(-1px);
+}
+
+.cart-popup .view-cart-btn {
+    background: linear-gradient(135deg, rgba(120, 40, 180, 0.8), rgba(100, 30, 150, 0.8));
+    color: white;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    flex: 1;
+    border: 1px solid rgba(140, 60, 220, 0.5);
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.cart-popup .view-cart-btn:hover {
+    background: linear-gradient(135deg, rgba(140, 60, 220, 0.9), rgba(120, 40, 200, 0.9));
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 0 15px rgba(140, 60, 220, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Mobile responsive for popup */
+@media (max-width: 768px) {
+    .cart-popup .popup-content {
+        margin: 1rem;
+        padding: 1.25rem;
+        max-width: 300px;
+    }
+    
+    .cart-popup .popup-body {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.75rem;
+    }
+    
+    .cart-popup .popup-body img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .cart-popup .popup-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 } 

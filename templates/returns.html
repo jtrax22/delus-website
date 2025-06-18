@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Returns & Exchanges - Delus</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav class="main-nav">
+            <div class="nav-left">
+                <a href="{{ url_for('home') }}" class="nav-link">Shop</a>
+            </div>
+            
+            <div class="logo">
+                <a href="{{ url_for('home') }}">
+                    <img src="{{ url_for('static', filename='images/Delus_Scottsdale_Logo_No_Wave.png') }}" alt="Delus" class="logo-image">
+                </a>
+            </div>
+            
+            <div class="nav-right">
+                <a href="{{ url_for('cart') }}" class="cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="badge">{{ session.get('cart', [])|length }}</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Content -->
+    <div class="policy-container">
+        <div class="policy-header">
+            <h1><i class="fas fa-undo-alt"></i> Returns & Exchanges</h1>
+            <p>Easy returns and exchanges within 30 days</p>
+        </div>
+
+        <div class="policy-content">
+            <div class="policy-section">
+                <h2>Return Policy Overview</h2>
+                <div class="return-highlights">
+                    <div class="highlight-box">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>30-Day Window</h3>
+                        <p>Returns accepted within 30 days of delivery</p>
+                    </div>
+                    <div class="highlight-box">
+                        <i class="fas fa-shipping-fast"></i>
+                        <h3>Free Returns</h3>
+                        <p>We'll send you a prepaid return label</p>
+                    </div>
+                    <div class="highlight-box">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <h3>Full Refund</h3>
+                        <p>Get your money back within 5-7 business days</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>What Can Be Returned</h2>
+                <div class="return-conditions">
+                    <div class="condition-item allowed">
+                        <i class="fas fa-check-circle"></i>
+                        <div class="condition-content">
+                            <h4>Allowed Returns</h4>
+                            <ul>
+                                <li>Items in original condition with tags attached</li>
+                                <li>Unused products in original packaging</li>
+                                <li>Defective or damaged items</li>
+                                <li>Wrong item received</li>
+                                <li>Items that don't match description</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="condition-item not-allowed">
+                        <i class="fas fa-times-circle"></i>
+                        <div class="condition-content">
+                            <h4>Not Returnable</h4>
+                            <ul>
+                                <li>Items without original tags or packaging</li>
+                                <li>Used or worn products</li>
+                                <li>Personalized or custom items</li>
+                                <li>Items returned after 30 days</li>
+                                <li>Final sale items (marked as such)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>How to Return Items</h2>
+                <div class="return-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Contact Us</h4>
+                            <p>Email us or use our contact form to start your return. Include your order number and reason for return.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Get Return Label</h4>
+                            <p>We'll email you a prepaid return shipping label within 24 hours.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Package & Ship</h4>
+                            <p>Pack your items securely in the original packaging and attach the return label.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Get Refund</h4>
+                            <p>Once we receive your return, we'll process your refund within 5-7 business days.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>Exchanges</h2>
+                <div class="exchange-info">
+                    <div class="exchange-option">
+                        <i class="fas fa-exchange-alt"></i>
+                        <h4>Size Exchange</h4>
+                        <p>Need a different size? We'll expedite your exchange at no extra cost.</p>
+                    </div>
+                    <div class="exchange-option">
+                        <i class="fas fa-palette"></i>
+                        <h4>Color/Style Exchange</h4>
+                        <p>Want a different color or style? Subject to availability and price difference.</p>
+                    </div>
+                    <div class="exchange-option">
+                        <i class="fas fa-bolt"></i>
+                        <h4>Quick Exchange</h4>
+                        <p>We'll send your new item as soon as we receive your return tracking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>Refund Information</h2>
+                <div class="refund-details">
+                    <div class="refund-method">
+                        <i class="fas fa-credit-card"></i>
+                        <div class="method-content">
+                            <h4>Credit Card Refunds</h4>
+                            <p>Refunded to original payment method within 5-7 business days</p>
+                        </div>
+                    </div>
+                    <div class="refund-method">
+                        <i class="fab fa-paypal"></i>
+                        <div class="method-content">
+                            <h4>PayPal Refunds</h4>
+                            <p>Processed immediately, may take 3-5 days to appear in account</p>
+                        </div>
+                    </div>
+                    <div class="refund-method">
+                        <i class="fas fa-gift-card"></i>
+                        <div class="method-content">
+                            <h4>Store Credit</h4>
+                            <p>Available upon request - never expires and can be used anytime</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>Damaged or Defective Items</h2>
+                <div class="damage-policy">
+                    <div class="damage-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <p>If you receive a damaged or defective item, we'll make it right immediately. Contact us within 7 days of delivery for:</p>
+                        <ul>
+                            <li>Full refund or replacement</li>
+                            <li>Prepaid return shipping</li>
+                            <li>Priority processing</li>
+                            <li>Additional compensation if needed</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="policy-section">
+                <h2>International Returns</h2>
+                <div class="international-info">
+                    <p>For international orders:</p>
+                    <ul>
+                        <li>30-day return window still applies</li>
+                        <li>Customer responsible for return shipping costs</li>
+                        <li>Customs fees and duties are non-refundable</li>
+                        <li>Contact us for return authorization first</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="policy-section contact-section">
+                <h2>Need Help with a Return?</h2>
+                <p>Our customer service team is here to help make your return as easy as possible.</p>
+                <div class="contact-options">
+                    <a href="{{ url_for('contact') }}" class="contact-btn">
+                        <i class="fas fa-envelope"></i>
+                        Start Return Request
+                    </a>
+                    <div class="contact-note">
+                        <p>Response time: Within 24 hours</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#featured">Collections</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="{{ url_for('shipping') }}">Shipping</a></li>
+                    <li><a href="{{ url_for('returns') }}">Returns</a></li>
+                    <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Delus. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <style>
+        .policy-container {
+            max-width: 1000px;
+            margin: 120px auto 50px;
+            padding: 0 20px;
+        }
+
+        .policy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(7, 5, 16, 0.95) 0%, rgba(15, 10, 25, 0.95) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(120, 40, 180, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(120, 40, 180, 0.3);
+        }
+
+        .policy-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .policy-header h1 i {
+            color: rgba(140, 60, 210, 0.9);
+            margin-right: 0.5rem;
+        }
+
+        .policy-header p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .policy-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .policy-section {
+            background: linear-gradient(135deg, rgba(7, 5, 16, 0.8) 0%, rgba(15, 10, 25, 0.8) 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(120, 40, 180, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .policy-section h2 {
+            color: rgba(140, 60, 210, 0.9);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .return-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .highlight-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .highlight-box:hover {
+            border-color: rgba(140, 60, 220, 0.5);
+            box-shadow: 0 5px 15px rgba(120, 40, 180, 0.3);
+        }
+
+        .highlight-box i {
+            font-size: 3rem;
+            color: rgba(140, 60, 210, 0.9);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .highlight-box h3 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.3rem;
+        }
+
+        .highlight-box p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .return-conditions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .condition-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .condition-item.allowed {
+            border: 1px solid rgba(34, 197, 94, 0.4);
+        }
+
+        .condition-item.not-allowed {
+            border: 1px solid rgba(239, 68, 68, 0.4);
+        }
+
+        .condition-item i {
+            font-size: 2rem;
+            margin-top: 0.25rem;
+        }
+
+        .condition-item.allowed i {
+            color: rgba(34, 197, 94, 0.9);
+        }
+
+        .condition-item.not-allowed i {
+            color: rgba(239, 68, 68, 0.9);
+        }
+
+        .condition-content h4 {
+            color: var(--text-color);
+            margin: 0 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .condition-content ul {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .condition-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .return-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .step-number {
+            background: linear-gradient(135deg, rgba(120, 40, 180, 0.8), rgba(100, 30, 150, 0.8));
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .step-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .exchange-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .exchange-option {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+            text-align: center;
+        }
+
+        .exchange-option i {
+            font-size: 2.5rem;
+            color: rgba(140, 60, 210, 0.9);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .exchange-option h4 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .exchange-option p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .refund-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .refund-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+        }
+
+        .refund-method i {
+            font-size: 2rem;
+            color: rgba(140, 60, 210, 0.9);
+            min-width: 50px;
+            text-align: center;
+        }
+
+        .method-content h4 {
+            color: var(--text-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .method-content p {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 0;
+        }
+
+        .damage-policy {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(120, 40, 180, 0.2);
+        }
+
+        .damage-info {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .damage-info i {
+            font-size: 2rem;
+            color: rgba(140, 60, 210, 0.9);
+            margin-top: 0.25rem;
+            flex-shrink: 0;
+        }
+
+        .damage-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .damage-info ul {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .damage-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        .international-info p {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 1rem;
+        }
+
+        .international-info ul {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+            margin: 0;
+        }
+
+        .international-info li {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-section {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(120, 40, 180, 0.1) 0%, rgba(100, 30, 150, 0.1) 100%);
+            border: 1px solid rgba(140, 60, 220, 0.4);
+        }
+
+        .contact-options {
+            margin-top: 1.5rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(120, 40, 180, 0.8), rgba(100, 30, 150, 0.8));
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+
+        .contact-btn:hover {
+            background: linear-gradient(135deg, rgba(140, 60, 220, 0.9), rgba(120, 40, 200, 0.9));
+            box-shadow: 0 5px 15px rgba(140, 60, 220, 0.4);
+            transform: translateY(-2px);
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-note p {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        .policy-section p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .policy-section ul {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+        }
+
+        .policy-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .policy-container {
+                margin: 100px auto 30px;
+                padding: 0 15px;
+            }
+
+            .policy-header h1 {
+                font-size: 2rem;
+            }
+
+            .return-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .return-conditions {
+                grid-template-columns: 1fr;
+            }
+
+            .return-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .exchange-info {
+                grid-template-columns: 1fr;
+            }
+
+            .damage-info {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</body>
+</html> 
