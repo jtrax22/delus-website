@@ -142,14 +142,13 @@
     <section class="hero main-hero">
         <div class="hero-content">
             <h1 class="sr-only">Delus Scottsdale - Premium Fashion and Electronic Music from Arizona</h1>
-            <a href="#featured" class="cta-button" aria-label="Shop Delus Scottsdale Collection">Shop Now</a>
+            <a href="#featured" class="drop-title" data-text="SHOP NOW" aria-label="Shop Delus Scottsdale Collection">Shop Now</a>
         </div>
     </section>
 
     <!-- Featured Collection -->
     <section id="featured" class="featured-collection">
-        <h2 class="drop-title" data-text="DROP 001">DROP 001</h2>
-        <p class="collection-description">Exclusive Delus Scottsdale premium streetwear collection featuring hand-crafted trucker hats and fashion-forward designs from Arizona.</p>
+        <h2 class="drop-title" data-text="HATS">Collection</h2>
         <div class="collection-container">
             <!-- First row: Products 1-2 -->
             <div class="product-grid two-column">
@@ -188,7 +187,7 @@
                     </div>
                     <h3>Ritual Trucker - Black XL</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 0 and products[0].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(1) and products_by_id[1].stock > 0 %}
                         <button class="add-to-cart" data-product-id="1">
                             Add to Cart
                         </button>
@@ -234,7 +233,7 @@
                     </div>
                     <h3>Ritual Trucker - Grey XL</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 1 and products[1].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(2) and products_by_id[2].stock > 0 %}
                         <button class="add-to-cart" data-product-id="2">
                             Add to Cart
                         </button>
@@ -283,7 +282,7 @@
                     </div>
                     <h3>Ritual Trucker - Maroon</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 2 and products[2].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(3) and products_by_id[3].stock > 0 %}
                         <button class="add-to-cart" data-product-id="3">
                             Add to Cart
                         </button>
@@ -329,7 +328,7 @@
                     </div>
                     <h3>Certified Trucker - Rose</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 3 and products[3].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(4) and products_by_id[4].stock > 0 %}
                         <button class="add-to-cart" data-product-id="4">
                             Add to Cart
                         </button>
@@ -378,7 +377,7 @@
                     </div>
                     <h3>Certified Trucker - White</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 4 and products[4].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(5) and products_by_id[5].stock > 0 %}
                         <button class="add-to-cart" data-product-id="5">
                             Add to Cart
                         </button>
@@ -424,7 +423,7 @@
                     </div>
                     <h3>Certified Trucker - Black</h3>
                     <p class="price">$60</p>
-                    {% if products and products|length > 5 and products[5].stock > 0 %}
+                    {% if products_by_id and products_by_id.get(6) and products_by_id[6].stock > 0 %}
                         <button class="add-to-cart" data-product-id="6">
                             Add to Cart
                         </button>
@@ -443,7 +442,15 @@
         <div class="featured-track">
             <h2 class="drop-title">Live Sets</h2>
             
-
+            <!-- YouTube Video Button -->
+            <div class="track-player-embed">
+                <a href="https://www.youtube.com/watch?v=ZY1Q1E5_i04" target="_blank" rel="noopener noreferrer" class="youtube-button">
+                    <div class="youtube-button-content">
+                        <i class="fab fa-youtube"></i>
+                        <span>Watch on YouTube</span>
+                    </div>
+                </a>
+            </div>
 
             <!-- SoundCloud Embeds -->
             <div class="track-player-embed">

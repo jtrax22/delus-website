@@ -289,6 +289,18 @@ footer::before {
     backdrop-filter: blur(5px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    text-decoration: none; /* Ensure links don't have underline */
+}
+
+/* Ensure drop-title links are styled correctly */
+.drop-title:link,
+.drop-title:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.drop-title:active {
+    color: white;
 }
 
 .drop-title:hover {
